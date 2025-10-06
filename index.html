@@ -1,11 +1,340 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <title>Jenkins</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Joyeux anniversaire, Julien ! 🎉</title>
+    <style>
+        :root {
+            --bg: #0f1724;
+            --card: #0b1220;
+            --accent: #ffb86b;
+            --muted: #9aa4b2;
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        html, body {
+            height: 100%;
+            margin: 0;
+            font-family: system-ui, -apple-system, Segoe UI, Roboto, 'Helvetica Neue', Arial
+        }
+
+        body {
+            background: radial-gradient(1200px 600px at 10% 10%, rgba(255, 186, 107, 0.06), transparent),
+            radial-gradient(900px 400px at 90% 90%, rgba(123, 97, 255, 0.04), transparent),
+            var(--bg);
+            color: #e6eef7;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 3rem;
+        }
+
+        .card {
+            width: min(940px, 96%);
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.01));
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            border-radius: 18px;
+            padding: 2.4rem;
+            box-shadow: 0 10px 30px rgba(2, 6, 23, 0.6);
+            position: relative;
+            overflow: hidden;
+        }
+
+        h1 {
+            font-size: clamp(28px, 4vw, 48px);
+            margin: 0 0 .4rem 0;
+            letter-spacing: -0.02em;
+            display: flex;
+            align-items: center;
+            gap: .6rem;
+        }
+
+        h1 .spark {
+            font-size: .9em
+        }
+
+        .subtitle {
+            color: var(--muted);
+            margin: 0 0 1.6rem 0;
+            font-size: 1rem
+        }
+
+        .banner {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 1.6rem
+        }
+
+        .balloons {
+            display: flex;
+            gap: 10px;
+            align-items: flex-end;
+            margin-left: auto
+        }
+
+        .balloon {
+            width: 48px;
+            height: 64px;
+            border-radius: 50% 50% 48% 48%;
+            position: relative;
+            transform-origin: center bottom;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: var(--card);
+        }
+
+        .balloon::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 100%;
+            width: 2px;
+            height: 16px;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.12), rgba(0, 0, 0, 0.2));
+            transform: translateX(-50%)
+        }
+
+        .b1 {
+            background: linear-gradient(180deg, #ffd2a6, #ffb86b)
+        }
+
+        .b2 {
+            background: linear-gradient(180deg, #c3b7ff, #7b61ff)
+        }
+
+        .message {
+            display: grid;
+            grid-template-columns:1fr 320px;
+            gap: 1.2rem;
+            align-items: start;
+        }
+
+        .left p {
+            margin: 0 0 1rem 0;
+            color: #dce9ff
+        }
+
+        .cake {
+            background: linear-gradient(180deg, #fff0de, #fff9f2);
+            border-radius: 16px;
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #2b2b2b;
+            border: 1px solid rgba(0, 0, 0, 0.06);
+        }
+
+        .cake .plate {
+            width: 220px;
+            height: 120px;
+            border-radius: 12px;
+            position: relative;
+            overflow: visible;
+            display: flex;
+            align-items: end;
+            justify-content: center
+        }
+
+        .cake .tier {
+            width: 180px;
+            height: 56px;
+            background: linear-gradient(180deg, #ffd5a8, #ffb86b);
+            border-radius: 10px 10px 8px 8px;
+            position: relative;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12)
+        }
+
+        .cake .icing {
+            position: absolute;
+            top: -12px;
+            left: 8px;
+            right: 8px;
+            height: 22px;
+            border-radius: 14px;
+            background: linear-gradient(180deg, #fff, #ffe9d6)
+        }
+
+        .candles {
+            display: flex;
+            gap: .6rem;
+            position: absolute;
+            top: -18px;
+            left: 50%;
+            transform: translateX(-50%)
+        }
+
+        .candle {
+            width: 6px;
+            height: 28px;
+            border-radius: 4px;
+            background: linear-gradient(#fff, #ffd5d5);
+            position: relative;
+            display: block
+        }
+
+        .flame {
+            width: 10px;
+            height: 14px;
+            border-radius: 50% 50% 50% 50%;
+            position: absolute;
+            top: -14px;
+            left: 50%;
+            transform: translateX(-50%);
+            filter: drop-shadow(0 2px 2px rgba(255, 140, 0, 0.2))
+        }
+
+        .f1 {
+            background: linear-gradient(180deg, #fff59d, #ff8c00)
+        }
+
+        /* confettis */
+        .confetti {
+            pointer-events: none;
+            position: absolute;
+            inset: 0;
+            overflow: hidden
+        }
+
+        .confetti i {
+            position: absolute;
+            width: 10px;
+            height: 18px;
+            opacity: 0.95;
+            transform-origin: center;
+            animation: fall linear infinite
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-20vh) rotate(0) scale(1)
+            }
+            100% {
+                transform: translateY(120vh) rotate(720deg) scale(.8)
+            }
+        }
+
+        /* generate many confetti using inline styles on elements */
+
+        .actions {
+            margin-top: 1.1rem;
+            display: flex;
+            gap: .6rem;
+            flex-wrap: wrap
+        }
+
+        .btn {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: .6rem .9rem;
+            border-radius: 10px;
+            color: inherit;
+            cursor: pointer
+        }
+
+        footer {
+            margin-top: 1.4rem;
+            color: var(--muted);
+            font-size: .9rem
+        }
+
+        @media (max-width: 720px) {
+            .message {
+                grid-template-columns:1fr
+            }
+
+            .cake {
+                order: -1
+            }
+
+            .balloons {
+                display: none
+            }
+        }
+    </style>
 </head>
 <body>
-<h1>Jenkins</h1>
+<div class="card" role="main" aria-labelledby="titre">
 
+    <div class="confetti" aria-hidden="true">
+        <!-- a few dozen confetti pieces generated manually for pure HTML/CSS -->
+        <i style="left:4%;top:-10vh;background:#ffb86b;animation-duration:7s;animation-delay:0s"></i>
+        <i style="left:12%;top:-8vh;background:#7b61ff;animation-duration:6s;animation-delay:.3s"></i>
+        <i style="left:20%;top:-12vh;background:#6fd4ff;animation-duration:8s;animation-delay:.6s"></i>
+        <i style="left:28%;top:-9vh;background:#ffd2a6;animation-duration:6.8s;animation-delay:.2s"></i>
+        <i style="left:36%;top:-11vh;background:#ffd2a6;animation-duration:7.6s;animation-delay:.9s"></i>
+        <i style="left:44%;top:-7vh;background:#ff7ab6;animation-duration:5.8s;animation-delay:1.1s"></i>
+        <i style="left:52%;top:-10vh;background:#c3b7ff;animation-duration:7.2s;animation-delay:.4s"></i>
+        <i style="left:60%;top:-6vh;background:#a6f0ff;animation-duration:6.4s;animation-delay:.7s"></i>
+        <i style="left:68%;top:-13vh;background:#ffb86b;animation-duration:8.2s;animation-delay:.5s"></i>
+        <i style="left:76%;top:-9vh;background:#7b61ff;animation-duration:6.6s;animation-delay:1.4s"></i>
+        <i style="left:84%;top:-14vh;background:#6fd4ff;animation-duration:7.4s;animation-delay:.2s"></i>
+        <i style="left:92%;top:-8vh;background:#ffd2a6;animation-duration:6.2s;animation-delay:.8s"></i>
+        <!-- more small pieces -->
+        <i style="left:8%;top:-6vh;width:6px;height:10px;background:#ff7ab6;animation-duration:5s;animation-delay:0.4s"></i>
+        <i style="left:18%;top:-7vh;width:6px;height:10px;background:#a6f0ff;animation-duration:5.6s;animation-delay:0.1s"></i>
+        <i style="left:38%;top:-5vh;width:6px;height:10px;background:#7b61ff;animation-duration:6.1s;animation-delay:.3s"></i>
+        <i style="left:58%;top:-9vh;width:6px;height:10px;background:#ffb86b;animation-duration:5.8s;animation-delay:.2s"></i>
+        <i style="left:78%;top:-4vh;width:6px;height:10px;background:#c3b7ff;animation-duration:6.5s;animation-delay:.6s"></i>
+    </div>
+
+    <header class="banner">
+        <h1 id="titre">Joyeux anniversaire, <span class="spark">Julien</span>! 🎉</h1>
+        <div class="balloons" aria-hidden="true">
+            <div class="balloon b1">2</div>
+            <div class="balloon b2">6</div>
+        </div>
+    </header>
+
+    <p class="subtitle">Pipeline exécuté avec succès — les tests de vieillissement ont tous passé 🎉</p>
+
+    <section class="message">
+        <div class="left">
+            <p>Salut Julien — le job <code>birthday_pipeline</code> vient de se terminer sans aucune erreur ! Les étapes
+                <code>compile_cake()</code>, <code>deploy_confetti()</code> et <code>enjoy_life()</code> sont toutes au
+                vert. Jenkins confirme : tu es officiellement en version <strong>v26.0.0</strong> — stable, optimisée et
+                toujours compatible avec la bonne humeur. 🚀 Si tu veux un rollback, désolé, la sauvegarde a expiré hier
+                minuit.</p>
+            <div class="actions">
+                <button class="btn" onclick="alert('Souffle les bougies... (mais ici c\'est juste pour de faux)')">
+                    Souffler les bougies
+                </button>
+                <button class="btn" onclick="alert('Bonne dégustation du gâteau imaginé ! 🎂')">Manger une part</button>
+            </div>
+
+            <footer>Build validé par Jenkins — aucun bug détecté, juste un an de plus à déployer. 🧁</footer>
+        </div>
+
+        <aside class="cake" aria-hidden="false" role="img" aria-label="Gâteau d'anniversaire stylisé">
+            <div class="plate">
+                <div class="tier">
+                    <div class="icing"></div>
+                    <div class="candles">
+              <span class="candle" style="background:linear-gradient(#fff9c6,#ffd2a6)">
+                <span class="flame f1"></span>
+              </span>
+                        <span class="candle" style="background:linear-gradient(#fff9c6,#ffd2a6)">
+                <span class="flame f1"></span>
+              </span>
+                        <span class="candle" style="background:linear-gradient(#fff9c6,#ffd2a6)">
+                <span class="flame f1"></span>
+              </span>
+                    </div>
+                </div>
+            </div>
+            <div style="margin-top:12px;color:#2b2b2b;font-weight:600">Joyeux anniversaire 🎂</div>
+        </aside>
+    </section>
+
+</div>
 </body>
 </html>
